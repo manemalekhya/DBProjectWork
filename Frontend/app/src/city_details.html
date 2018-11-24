@@ -28,20 +28,22 @@
       }
     </style>
   </head>
-  <body ng-app="bookMySport" ng-controller="cityMapsController">
+  <body ng-app="bookMySport" ng-controller="cityMapsController" id="myApp">
     <div id="map"></div>
     <script>
         var app = angular.module("bookMySport", []);
         app.controller("cityMapsController", function($scope) {
-          alert("Hell Yeah!");
+          // alert("Hell Yeah!");
           $scope.var1=2;
         });
 
       function initMap() {
+        var e = document.getElementById('myApp');     
+        var $scope = angular.element(e).scope();
+        alert($scope.var1);
         var ppgPaintsArena = {lat: 40.4396, lng: -79.9893};
         var heinzField = {lat: 40.4468, lng: -80.0158};
         var pncPark = {lat: 40.4469, lng: -80.0057};
-
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
           center: ppgPaintsArena
