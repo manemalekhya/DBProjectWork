@@ -1,33 +1,18 @@
 package com.demo.prj;
-
+ 
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import java.io.IOException;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.handler.AbstractHandler;
  
-public class HelloWorld extends AbstractHandler
+public class HelloWorld extends HttpServlet
 {
-    public void handle(String target,
-                       Request baseRequest,
-                       HttpServletRequest request,
-                       HttpServletResponse response) 
-        throws IOException, ServletException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
-        baseRequest.setHandled(true);
-        response.getWriter().println("<h1>Hello World</h1>");
-    }
- 
-    public static void main(String[] args) throws Exception
-    {
-        Server server = new Server(8080);
-        server.setHandler(new HelloWorld());
- 
-        server.start();
-        server.join();
+        response.getWriter().println("<h1>Hello Servlet</h1>");
+        response.getWriter().println("session=" + request.getSession(true).getId());
     }
 }
