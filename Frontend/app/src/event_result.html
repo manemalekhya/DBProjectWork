@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Event Results</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
+
+        <!-- Stylesheets -->
+        <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+        <link href="plugin-frameworks/swiper.css" rel="stylesheet">
+        <link href="fonts/ionicons.css" rel="stylesheet">
+        <link href="common/styles.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<script>
+var app = angular.module("bookMySport", []);
+app.controller("eventController", function($scope) {
+  $scope.events_list = [
+  {"name":"E1","team1":"A","team2":"B","stadium":{"name":"PPG Paints Arena","city": "Pittsburgh"},"event_time" : Date.now()+7000000000},
+  {"name":"E1","team1":"D","team2":"E","stadium":"F","event_time" : Date.now()},
+  {"name":"E1","team1":"G","team2":"H","stadium":"I","event_time" : Date.now()-7000000000},
+  ]
+});
+</script>
+
+<div class="row c_cloud_div" ng-app="bookMySport" ng-controller="eventController">
+
+    <div class = "col-xs-4 col-md-2">
+        <div class="col-xs-12 col-md-10 c_concrete_div"  style="height: 200px; left: 15%;">
+            
+        </div>
+    </div>
+    <div class = "col-xs-8 col-md-10">
+        <div class="col-xs-12 col-md-11  c_concrete_div" >
+            <div ng-repeat="event in events_list" class="event_ticket_div">
+                <div class="col-xs-12 col-sm-12 event_font">{{event.name}}</div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 event_team_font">{{event.team1}}</div>
+                    <div class="col-sm-2 event_team_font">VS</div>
+                    <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 event_team_font">{{event.team2}}</div>    
+                </div>
+                <div class="col-xs-12 col-sm-12 event_font">At : <a href="http://maps.google.com/?q={{event.stadium.name + '' + event.stadium.city}}">{{event.stadium.name}}</a></div>
+                <div class="col-xs-12 col-sm-12 event_font">{{event.event_time | date:'yyyy-MMM-dd'}}</div>
+                {{event}}                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SCIPTS -->
+<script src="plugin-frameworks/jquery-3.2.1.min.js"></script>
+<script src="plugin-frameworks/bootstrap.min.js"></script>
+<script src="plugin-frameworks/swiper.js"></script>
+<script src="common/scripts.js"></script>
+</body>
+</html>
+
