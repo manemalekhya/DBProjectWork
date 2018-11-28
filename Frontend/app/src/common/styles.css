@@ -86,6 +86,14 @@ textarea:focus { outline-color: #EF0031; }
 
 :-ms-input-placeholder { color: #aaa; font-weight: 700; }
 
+.c_cloud_div {background-color: #ecf0f1; color: #2c3e50 ; border-radius : 5px; }
+.c_concrete_div {background-color: #95a5a6; color: #2c3e50; border-radius : 5px;  margin-top: 10px; margin-left: 5px;}
+.event_ticket_div {background-color: #ecf0f1; margin: 5px 5px 5px 5px; padding: 10px 10px 10px 10px;}
+.event_font {color: #e74c3c; text-align: center;}
+.event_team_font {color: #9b59b6; text-align: center;}
+
+#map {height: 100%;}
+
 .card { border-radius: 0px; border: 0px; background: none; box-shadow: none; }
 
 .card .bg-white {
