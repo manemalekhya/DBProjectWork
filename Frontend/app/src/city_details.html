@@ -34,39 +34,67 @@
         var app = angular.module("bookMySport", []);
         app.controller("cityMapsController", function($scope) {
           // alert("Hell Yeah!");
-          $scope.var1=2;
+          $scope.stadiums=[
+          {coordinates:{lat: 40.4396, lng: -79.9893}, name :"PPG Paints Arena"},
+          {coordinates:{lat: 40.4468, lng: -80.0158}, name :"Heinz Field"},
+          {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
+          ];
         });
+
+        function httpGetCall(data){
+            alert(data);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', "http://localhost:8000/", true);
+            xmlHttp.send();
+            // return xmlHttp.responseText;
+        }
 
       function initMap() {
         var e = document.getElementById('myApp');     
         var $scope = angular.element(e).scope();
-        alert($scope.var1);
-        var ppgPaintsArena = {lat: 40.4396, lng: -79.9893};
-        var heinzField = {lat: 40.4468, lng: -80.0158};
-        var pncPark = {lat: 40.4469, lng: -80.0057};
+        // alert($scope.stadiums);
+    
+        // var ppgPaintsArena = {lat: 40.4396, lng: -79.9893};
+        // var heinzField = {lat: 40.4468, lng: -80.0158};
+        // var pncPark = {lat: 40.4469, lng: -80.0057};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: ppgPaintsArena
+          center: $scope.stadiums[0].coordinates
         });
 
-        var marker = new google.maps.Marker({
-          position: ppgPaintsArena,
-          map: map,
-          title: 'PPG Paints Arena',
-          zIndex: 3
-        });
+        var i;
+        var markers = new Array($scope.stadiums.length);
+        for(i=0; i < $scope.stadiums.length; i++){
+            markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name});
+            // console.log(markers[i]);
+            var stadiumName=$scope.stadiums[i].name;
+            markers[i].addListener('click', function(data) {
+            httpGetCall(data.latLng);
+            // console.log(data);
+            // console.log(data.latLng.lat);
+            // console.log(JSON.stringify(data.latLng.lng));
+            // console.log(stadiumName);
+            // alert(stadiumName);
+            });
+        }
 
-        var marker2 = new google.maps.Marker({
-          position: heinzField,
-          map: map,
-          title: 'Heinz Football Field'
-        });
+        // var marker = new google.maps.Marker({
+        //   position: ppgPaintsArena,
+        //   map: map,
+        //   title: 'PPG Paints Arena'
+        // });
 
-        var marker3 = new google.maps.Marker({
-          position: pncPark,
-          map: map,
-          title: 'Heinz Football Field'
-        });
+        // var marker2 = new google.maps.Marker({
+        //   position: heinzField,
+        //   map: map,
+        //   title: 'Heinz Field'
+        // });
+
+        // var marker3 = new google.maps.Marker({
+        //   position: pncPark,
+        //   map: map,
+        //   title: 'Heinz Football Field'
+        // });
 
         map.addListener('center_changed', function() {
           // 3 seconds after the center of the map has changed, pan back to the
@@ -76,26 +104,26 @@
           }, 3000);
         });
 
-        marker.addListener('click', function(data) {
-          //   console.log(JSON.stringify(data));
-          //   // alert(1)
+        // marker.addListener('click', function(data) {
+        //   //   console.log(JSON.stringify(data));
+        //   //   // alert(1)
 
-          // map.setZoom(8);
-          // map.setCenter(marker.getPosition());
-          window.location.replace("file:///C:/Users/Varun%20Nair/git/DBProjectWork/Frontend/app/src/event_result.html");
-        });
-        marker2.addListener('click', function(data) {
-            console.log(data);
-            alert(2)
-          map.setZoom(6);
-          map.setCenter(marker.getPosition());
-        });
-        marker3.addListener('click', function(data) {
-            console.log(data);
-            alert(3)
-          map.setZoom(6);
-          map.setCenter(marker.getPosition());
-        });
+        //   // map.setZoom(8);
+        //   // map.setCenter(marker.getPosition());
+        //   window.location.replace("file:///C:/Users/Varun%20Nair/git/DBProjectWork/Frontend/app/src/event_result.html");
+        // });
+        // marker2.addListener('click', function(data) {
+        //     console.log(data);
+        //     alert(2)
+        //   map.setZoom(6);
+        //   map.setCenter(marker.getPosition());
+        // });
+        // marker3.addListener('click', function(data) {
+        //     console.log(data);
+        //     alert(3)
+        //   map.setZoom(6);
+        //   map.setCenter(marker.getPosition());
+        // });
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjynqLTc7ccXTPvUicgr5CH0Li3hOgmvs&callback=initMap">
