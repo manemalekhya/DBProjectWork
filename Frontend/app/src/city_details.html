@@ -39,6 +39,10 @@
           {coordinates:{lat: 40.4468, lng: -80.0158}, name :"Heinz Field"},
           {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
           ];
+
+          $scope.selectStadium = function(data){
+            alert(data.latLng);
+          };
         });
 
         function httpGetCall(data){
@@ -54,6 +58,22 @@
         var $scope = angular.element(e).scope();
         // alert($scope.stadiums);
     
+        var image = {
+          url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(20, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+
+
         // var ppgPaintsArena = {lat: 40.4396, lng: -79.9893};
         // var heinzField = {lat: 40.4468, lng: -80.0158};
         // var pncPark = {lat: 40.4469, lng: -80.0057};
@@ -65,11 +85,12 @@
         var i;
         var markers = new Array($scope.stadiums.length);
         for(i=0; i < $scope.stadiums.length; i++){
-            markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name});
+            markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name,icon: image, shape: shape});
             // console.log(markers[i]);
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
-            httpGetCall(data.latLng);
+             $scope.selectStadium(data)
+            // httpGetCall(data.latLng);
             // console.log(data);
             // console.log(data.latLng.lat);
             // console.log(JSON.stringify(data.latLng.lng));
