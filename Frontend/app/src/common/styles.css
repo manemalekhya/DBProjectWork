@@ -86,6 +86,7 @@ textarea:focus { outline-color: #EF0031; }
 
 :-ms-input-placeholder { color: #aaa; font-weight: 700; }
 
+.c_mazarine_div {background-color: #273c75; color: #f5f6fa ; border-radius : 15px; margin: 10px 10px; }
 .c_cloud_div {background-color: #ecf0f1; color: #2c3e50 ; border-radius : 5px; }
 .c_concrete_div {background-color: #95a5a6; color: #2c3e50; border-radius : 5px;  margin-top: 10px; margin-left: 5px;}
 .event_ticket_div {background-color: #ecf0f1; margin: 5px 5px 5px 5px; padding: 10px 10px 10px 10px;}
@@ -103,6 +104,28 @@ textarea:focus { outline-color: #EF0031; }
 }
 
 .card i { font-size: 1.2em;}
+
+.appButton {
+    background-color: #2c3e50; 
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.delButton {
+    background-color: #c23616; 
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
 
 
 

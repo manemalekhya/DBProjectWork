@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Event Results</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
+
+        <!-- Stylesheets -->
+        <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+        <link href="plugin-frameworks/swiper.css" rel="stylesheet">
+        <link href="fonts/ionicons.css" rel="stylesheet">
+        <link href="common/styles.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<script>
+var app = angular.module("bookMySport", []);
+app.controller("checkoutController", function($scope) {
+    $scope.initCheckoutPage = function(){
+          $scope.cart=[
+            {event:1,noOfAdults:4,noOfChildren:5,typeOfSeat:'VIP'},
+            {event:2,noOfAdults:3,noOfChildren:6,typeOfSeat:'Regular'}
+          ];
+    };
+    // END of init function
+    $scope.deleteItem =function(eventToDelete){
+        alert(eventToDelete);
+    };
+});
+</script>
+
+<div class="row c_cloud_div" ng-app="bookMySport" ng-controller="checkoutController" ng-init="initCheckoutPage()">
+
+    <div class = "col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12  c_concrete_div">
+            <h4>Your Cart</h4>                    
+        </div>
+    <div>
+        <div ng-repeat="event in cart" class="row c_mazarine_div" >
+            <h5 class="col-sm-3">Event : {{event.event}}</h5>
+            <h5 class="col-sm-3" ng-if="event.noOfAdults">Adults : {{event.noOfAdults}}</h5>
+            <h5 class="col-sm-3" ng-if="event.noOfChildren">Children : {{event.noOfChildren}}</h5>
+            <div class="col-sm-3"> <button class="delButton" ng-click="deleteItem(event.event)"> X </button></div>
+        </div>
+    </div>
+
+    <div>
+        <button class="appButton">
+            Check Out
+        </button>
+    </div>
+</div>
+
+</div>
+
+<!-- SCIPTS -->
+<script src="plugin-frameworks/jquery-3.2.1.min.js"></script>
+<script src="plugin-frameworks/bootstrap.min.js"></script>
+<script src="plugin-frameworks/swiper.js"></script>
+<script src="common/scripts.js"></script>
+</body>
+</html>

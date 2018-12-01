@@ -28,4 +28,13 @@
     <servlet-name>Signup</servlet-name>
     <url-pattern>/signup/*</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CityMap</servlet-name>
+    <servlet-class>com.demo.prj.cityMap</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CityMap</servlet-name>
+    <url-pattern>/cityMap/*</url-pattern>
+  </servlet-mapping>
 </web-app>
