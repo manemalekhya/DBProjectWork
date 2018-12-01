@@ -28,17 +28,31 @@
       }
     </style>
   </head>
-  <body ng-app="bookMySport" ng-controller="cityMapsController" id="myApp">
+  <body ng-app="bookMySport" ng-controller="cityMapsController" id="myApp" ng-init="initCityMap">
     <div id="map"></div>
     <script>
         var app = angular.module("bookMySport", []);
-        app.controller("cityMapsController", function($scope) {
+        app.controller("cityMapsController", function($scope,$http) {
           // alert("Hell Yeah!");
-          $scope.stadiums=[
-          {coordinates:{lat: 40.4396, lng: -79.9893}, name :"PPG Paints Arena"},
-          {coordinates:{lat: 40.4468, lng: -80.0158}, name :"Heinz Field"},
-          {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
-          ];
+          $scope.initCityMap = async function(){
+            await $http({
+              method: 'GET',
+              url: 'http://localhost:8080/cityMap?q='+"Pittsburgh"
+            }).then(function successCallback(response) {
+                $scope.stadiums = response.data;
+              }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(2);
+                console.log(response);
+              });  
+          };
+          
+          // $scope.stadiums=[
+          // {coordinates:{lat: 40.4396, lng: -79.9893}, name :"PPG Paints Arena"},
+          // {coordinates:{lat: 40.4468, lng: -80.0158}, name :"Heinz Field"},
+          // {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
+          // ];
 
           $scope.selectStadium = function(data){
             alert(data.latLng);
@@ -53,11 +67,13 @@
             // return xmlHttp.responseText;
         }
 
-      function initMap() {
+      async function initMap() {
         var e = document.getElementById('myApp');     
         var $scope = angular.element(e).scope();
         // alert($scope.stadiums);
-    
+        console.log(1);
+        await $scope.initCityMap();
+        console.log(2);
         var image = {
           url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
           // This marker is 20 pixels wide by 32 pixels high.
@@ -90,32 +106,8 @@
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
              $scope.selectStadium(data)
-            // httpGetCall(data.latLng);
-            // console.log(data);
-            // console.log(data.latLng.lat);
-            // console.log(JSON.stringify(data.latLng.lng));
-            // console.log(stadiumName);
-            // alert(stadiumName);
             });
         }
-
-        // var marker = new google.maps.Marker({
-        //   position: ppgPaintsArena,
-        //   map: map,
-        //   title: 'PPG Paints Arena'
-        // });
-
-        // var marker2 = new google.maps.Marker({
-        //   position: heinzField,
-        //   map: map,
-        //   title: 'Heinz Field'
-        // });
-
-        // var marker3 = new google.maps.Marker({
-        //   position: pncPark,
-        //   map: map,
-        //   title: 'Heinz Football Field'
-        // });
 
         map.addListener('center_changed', function() {
           // 3 seconds after the center of the map has changed, pan back to the
@@ -124,27 +116,6 @@
             map.panTo(marker.getPosition());
           }, 3000);
         });
-
-        // marker.addListener('click', function(data) {
-        //   //   console.log(JSON.stringify(data));
-        //   //   // alert(1)
-
-        //   // map.setZoom(8);
-        //   // map.setCenter(marker.getPosition());
-        //   window.location.replace("file:///C:/Users/Varun%20Nair/git/DBProjectWork/Frontend/app/src/event_result.html");
-        // });
-        // marker2.addListener('click', function(data) {
-        //     console.log(data);
-        //     alert(2)
-        //   map.setZoom(6);
-        //   map.setCenter(marker.getPosition());
-        // });
-        // marker3.addListener('click', function(data) {
-        //     console.log(data);
-        //     alert(3)
-        //   map.setZoom(6);
-        //   map.setCenter(marker.getPosition());
-        // });
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjynqLTc7ccXTPvUicgr5CH0Li3hOgmvs&callback=initMap">
