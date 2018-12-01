@@ -92,6 +92,7 @@ textarea:focus { outline-color: #EF0031; }
 .event_ticket_div {background-color: #ecf0f1; margin: 5px 5px 5px 5px; padding: 10px 10px 10px 10px;}
 .event_font {color: #e74c3c; text-align: center;}
 .event_team_font {color: #9b59b6; text-align: center;}
+.vl { border-left: 3px solid green; height: 500px;}
 
 #map {height: 100%;}
 

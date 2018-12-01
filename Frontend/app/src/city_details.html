@@ -43,7 +43,6 @@
               }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
-                console.log(2);
                 console.log(response);
               });  
           };
@@ -72,6 +71,7 @@
         var $scope = angular.element(e).scope();
         // alert($scope.stadiums);
         console.log(1);
+        // https://cdn2.iconfinder.com/data/icons/iconslandgps/PNG/256x256/Places/Stadium.png
         await $scope.initCityMap();
         console.log(2);
         var image = {
@@ -101,7 +101,7 @@
         var i;
         var markers = new Array($scope.stadiums.length);
         for(i=0; i < $scope.stadiums.length; i++){
-            markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name,icon: image, shape: shape});
+            markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name});
             // console.log(markers[i]);
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
