@@ -28,6 +28,14 @@
     <servlet-name>Signup</servlet-name>
     <url-pattern>/signup/*</url-pattern>
   </servlet-mapping>
+      <servlet>
+    <servlet-name>EventDet</servlet-name>
+    <servlet-class>com.demo.prj.EventDetails</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>EventDet</servlet-name>
+    <url-pattern>/eventdetail/*</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>CityMap</servlet-name>
