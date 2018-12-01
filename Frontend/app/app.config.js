@@ -1,16 +1,19 @@
 'use strict';
 
 angular.
-  module('phonecatApp').
+  module('ticketApp').
   config(['$routeProvider',
     function config($routeProvider) {
       $routeProvider.
-        when('/phones', {
-          template: '<phone-list></phone-list>'
+        when('/', {
+          template: '<event-search></event-search>'
         }).
-        when('/phones/:phoneId', {
-          template: '<phone-detail></phone-detail>'
+        when('/events', {
+          template: '<event-list></event-list>'
         }).
-        otherwise('/phones');
+        when('/events/:eventId', {
+          template: '<event-detail></event-detail>'
+        }).
+        otherwise('/');
     }
   ]);

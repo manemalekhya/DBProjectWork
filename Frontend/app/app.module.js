@@ -1,10 +1,11 @@
 'use strict';
 
-// Define the `phonecatApp` module
-angular.module('phonecatApp', [
+angular.module('ticketApp', [
   'ngAnimate',
   'ngRoute',
   'core',
-  'phoneDetail',
-  'phoneList'
+  'siteHeader',
+  'eventSearch',
+  'eventList',
+  'eventDetail'
 ]);
