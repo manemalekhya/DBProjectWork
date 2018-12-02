@@ -20,20 +20,45 @@
 <body>
 <script>
 var app = angular.module("bookMySport", []);
-app.controller("eventController", function($scope) {
+app.controller("eventController", function($scope,$http) {
   $scope.events_list = [
   {"name":"E1","team1":"A","team2":"B","stadium":{"name":"PPG Paints Arena","city": "Pittsburgh"},"event_time" : Date.now()+7000000000},
   {"name":"E1","team1":"D","team2":"E","stadium":"F","event_time" : Date.now()},
   {"name":"E1","team1":"G","team2":"H","stadium":"I","event_time" : Date.now()-7000000000},
-  ]
+  ];
+
+  $scope.buildQuery = function(){
+    return "q="+$scope.filter.query+"&c="+$scope.filter.city+"&s="+$scope.filter.stadium+"&sp="+$scope.filter.sport
+  };
+
+  $scope.eventListInit = async function(){
+    $scope.filter={};
+    $scope.filter.query="";
+    $scope.filter.city="";
+    $scope.filter.stadium="";
+    $scope.filter.sport="";
+    query = await $scope.buildQuery();
+    await $http({
+              method: 'GET',
+              url: 'http://localhost:8080/eventList/?'+query
+            }).then(function successCallback(response) {
+                $scope.stadiums = response.data;
+              }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(response);
+              });  
+  };
 });
 </script>
 
-<div class="row c_cloud_div" ng-app="bookMySport" ng-controller="eventController">
+<div class="row c_cloud_div" ng-app="bookMySport" ng-controller="eventController" ng-init="eventListInit()">
 
     <div class = "col-xs-4 col-md-2">
         <div class="col-xs-12 col-md-10 c_concrete_div"  style="height: 200px; left: 15%;">
-            
+            <div>
+                
+            </div>
         </div>
     </div>
     <div class = "col-xs-8 col-md-10">
