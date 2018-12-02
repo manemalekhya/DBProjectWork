@@ -26,7 +26,7 @@ public class eventList extends HttpServlet
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","root");   
             System.out.println("DB connection successful");
             
-            String eventSQLQuery="SELECT * from event_list as e, field_details as s, team_details as t1, team_details as t2  WHERE e.event_location = s.field_id AND (e.team1_id = t1.team_id AND e.team2_id = t2.team_id)";
+            String eventSQLQuery="SELECT e.event_id as id,e.name as name, t1.team_name as team1, t2.team_name as team2, s.field_name as stadiumname, e.event_date as event_time from event_list as e, field_details as s, team_details as t1, team_details as t2  WHERE e.event_location = s.field_id AND (e.team1_id = t1.team_id AND e.team2_id = t2.team_id)";
             
             if(request.getParameter("q")!=null){
                 String q=request.getParameter("q");
@@ -45,7 +45,7 @@ public class eventList extends HttpServlet
                 eventSQLQuery+=" AND t1.sport_played LIKE \'%"+request.getParameter("sp")+"%\'";
                 eventSQLQuery+=" AND t2.sport_played LIKE \'%"+request.getParameter("sp")+"%\'";
             }
-            
+
             // String stadiumSQLQuery="SELECT * from field_details  WHERE city LIKE \"%" + cityName + "%\"";
             System.out.println(eventSQLQuery);
 
@@ -56,18 +56,24 @@ public class eventList extends HttpServlet
             
             while(rs.next()){
                 // System.out.println(rs.getS);
-            //     JSONObject stadium = new JSONObject();
+                JSONObject event = new JSONObject();
             //     JSONObject coordinates = new JSONObject();
             //     coordinates.put("lat" , rs.getFloat("Latitude"));
             //     coordinates.put("lng" , rs.getFloat("Longitude"));
-            //     stadium.put("id",rs.getInt("field_id"));
+                
+                event.put("id",rs.getInt("id"));
+                event.put("name",rs.getString("name"));
+                event.put("team1",rs.getString("team1"));
+                event.put("team2",rs.getString("team2"));
+                event.put("stadiumname",rs.getString("stadiumname"));
+                event.put("event_time",rs.getString("event_time"));
             //     stadium.put("name",rs.getString("field_name"));
             //     stadium.put("coordinates",coordinates);
             //     System.out.println(stadium+"\n\n");
-            //     result.add(stadium);
+                result.add(event);
             }
-            // System.out.println(result);
-            // response.getWriter().println(JSON.toString(result));
+            System.out.println(result);
+            response.getWriter().println(JSON.toString(result));
             con.close();  
         }catch(Exception e){ System.out.println(e);}  
   }
