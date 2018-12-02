@@ -11,8 +11,11 @@ angular.
         when('/events', {
           template: '<event-list></event-list>'
         }).
+        when('/events/map/:cityId', {
+          template: '<city-map></city-map>'
+        }).
         when('/events/:eventId', {
-          template: '<event-detail></event-detail>'
+          template: '<event-detail></event-detail>'  
         }).
         otherwise('/');
     }

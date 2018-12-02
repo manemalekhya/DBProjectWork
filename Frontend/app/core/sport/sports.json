@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1", 
+        "imageUrl": "img/sports/baseball.jpg", 
+        "name": "Baseball"
+    },
+    {
+        "id": "2", 
+        "imageUrl": "img/sports/basketball.jpg", 
+        "name": "Basketball"
+    },
+    {
+        "id": "3", 
+        "imageUrl": "img/sports/cricket.jpg", 
+        "name": "Cricket"
+    },
+    {
+        "id": "4", 
+        "imageUrl": "img/sports/icehockey.jpg", 
+        "name": "Ice Hockey"
+    },
+    {
+        "id": "5", 
+        "imageUrl": "img/sports/soccer.jpg", 
+        "name": "Soccer"
+    },
+    {
+        "id": "6", 
+        "imageUrl": "img/sports/basketball.jpg", 
+        "name": "Basketball"
+    }
+]

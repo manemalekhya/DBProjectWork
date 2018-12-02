@@ -559,6 +559,8 @@ section {
 
 .dplay-tbl-cell {display: table-cell; vertical-align: middle; }
 
+.dplay-tbl-cell-new {display: table-cell; vertical-align: bottom; }
+
 .oflow-hidden { overflow: hidden; }
 
 .oflow-visible { overflow: visible; }
@@ -7384,4 +7386,17 @@ ul.icon li a{ padding: 10px;  }
 
 }
 
+body {background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/41294/hero.jpg) no-repeat center center fixed; background-size:cover;}
 
+.searchBox {width: 500px;height: 40px;margin: 50px auto;background: #444;background: rgba(0,0,0,.2);border-radius:  3px;border: 1px solid #fff;}
+
+.searchBox input {width: 370px;padding: 10px 5px;float: left;color: #ccc;border: 0;background: transparent;border-radius: 3px 0 0 3px;}
+
+.searchBox input:focus {outline: 0;background:transparent;}
+
+.searchBox button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 40px;width: 120px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0;}   
+
+.searchBox button:hover {background: #fff;color:#444;}
+.searchBox button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
+
+.searchBox button:focus {outline: 0;}
