@@ -4,7 +4,7 @@ angular.
   module('eventList').
   component('eventList', {
     templateUrl: 'event-list/event-list.template.html',
-    controller: function EventListController() {
-        this.listPage = 'List';
-      }
+    controller: ['$scope', function EventListController($scope) {
+        $scope.listPage = 'List';
+      }]
   });

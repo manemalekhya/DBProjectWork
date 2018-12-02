@@ -1,0 +1,32 @@
+[
+    {
+        "id": "b", 
+        "imageUrl": "img/cities/boston.jpg", 
+        "name": "Boston"
+    },
+    {
+        "id": "c", 
+        "imageUrl": "img/cities/chicago.jpg", 
+        "name": "Chicago"
+    },
+    {
+        "id": "la", 
+        "imageUrl": "img/cities/la.jpg", 
+        "name": "Los Angeles"
+    },
+    {
+        "id": "nyc", 
+        "imageUrl": "img/cities/nyc.jpg", 
+        "name": "New York City"
+    },
+    {
+        "id": "phl", 
+        "imageUrl": "img/cities/philadelphia.jpg", 
+        "name": "Philadelphia"
+    },
+    {
+        "id": "pgh", 
+        "imageUrl": "img/cities/pittsburgh.jpg", 
+        "name": "Pittsburgh"
+    }
+]
