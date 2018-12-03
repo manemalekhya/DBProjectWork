@@ -24,7 +24,7 @@
                                                 <!--a href="#!/events/map/{{city.id}}"-->
                                                 <!-- <a ng-click=searchEvent(city.id) style="cursor:pointer;"> -->
                                                 <a href="src/city_details.html?{{city.name}}">        
-                                                        <img class="card-img-top" src="img/blank.jpg" alt="Card image cap">
+                                                        <img style="height: 100px;" class="card-img-top" src="{{city.imageUrl}}" alt="Card image cap">
                                                         <h5 class="card-title">{{city.name}}</h5>
                                                 </a>
                                         </div>
@@ -32,13 +32,13 @@
                         </div>
                 </div>
                 <div class="row">
-                        <div class="sportContainer">
+                        <div>
                                 <h3>Sport</h3>
                                 <div class="col-sm-2" ng-repeat="sport in sports">
                                         <div class="card">
                                                 <!--a href="#!/events/map/{{city.id}}"-->
                                                 <a ng-click=searchEvent(sport.id) style="cursor:pointer;">
-                                                        <img class="card-img-top" src="img/blank.jpg" alt="Card image cap">
+                                                        <img style="height: 100px;" class="card-img-top" src="{{sport.imageUrl}}"" alt="Card image cap">
                                                         <h5 class="card-title">{{sport.name}}</h5>
                                                 </a>
                                         </div>
