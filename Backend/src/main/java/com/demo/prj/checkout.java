@@ -26,11 +26,8 @@ public class checkout extends HttpServlet
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","root");   
             System.out.println("DB connection successful");
             
-            String firstname = request.getParameter("f");
-            String lastname = request.getParameter("l");
-
             String eventSQLQuery="INSERT INTO transaction (amount,card_no,customer_id) values("+100+","+request.getParameter("card")+","+request.getParameter("cust")+")";
-            String sql2="insert into customer (first_name,last_name,phone_number,username) values(?,?,?,?)";
+            
             
             if(request.getParameter("q")!=null){
                 String q=request.getParameter("q");

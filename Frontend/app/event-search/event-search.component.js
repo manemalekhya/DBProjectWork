@@ -3,7 +3,7 @@
 angular.
   module('eventSearch').
   component('eventSearch', {
-    templateUrl: 'event-search/event-search.template.html',/*,
+    templateUrl: 'event-search/event-search.template.html'/*,
     resolve: {
         message: "Hello"
     },*/
@@ -20,10 +20,6 @@ angular.
     	};
         //search city function
 
-        $scope.selectCity = function(cityName){
-          // alert(cityName);
-          window.location.replace("file:///C:/Users/Varun%20Nair/git/DBProjectWork/Frontend/app/src/city_details.html?"+cityName)
-        };
         //search sport
         
 
