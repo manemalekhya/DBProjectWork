@@ -11,7 +11,7 @@ angular.
         when('/events', {
           template: '<event-list></event-list>'
         }).
-        when('/events/map/:cityId', {
+        when('/map/:cityId', {
           template: '<city-map></city-map>'
         }).
         when('/events/:eventId', {
