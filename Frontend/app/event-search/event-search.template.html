@@ -22,7 +22,8 @@
                                 <div class="col-sm-2" ng-repeat="city in cities">
                                         <div class="card">
                                                 <!--a href="#!/events/map/{{city.id}}"-->
-                                                <a ng-click=searchEvent(city.id) style="cursor:pointer;">
+                                                <!-- <a ng-click=searchEvent(city.id) style="cursor:pointer;"> -->
+                                                <a href="src/city_details.html?{{city.name}}">        
                                                         <img class="card-img-top" src="img/blank.jpg" alt="Card image cap">
                                                         <h5 class="card-title">{{city.name}}</h5>
                                                 </a>

@@ -33,11 +33,10 @@
     <script>
         var app = angular.module("bookMySport", []);
         app.controller("cityMapsController", function($scope,$http) {
-          // alert("Hell Yeah!");
-          $scope.initCityMap = async function(){
+          $scope.initCityMap = async function(cityName){
             await $http({
               method: 'GET',
-              url: 'http://localhost:8080/cityMap?q='+"Pittsburgh"
+              url: 'http://localhost:8080/cityMap?q='+cityName
             }).then(function successCallback(response) {
                 $scope.stadiums = response.data;
               }, function errorCallback(response) {
@@ -53,9 +52,6 @@
           // {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
           // ];
 
-          $scope.selectStadium = function(data){
-            alert(data.latLng);
-          };
         });
 
         function httpGetCall(data){
@@ -69,11 +65,9 @@
       async function initMap() {
         var e = document.getElementById('myApp');     
         var $scope = angular.element(e).scope();
-        // alert($scope.stadiums);
-        console.log(1);
         // https://cdn2.iconfinder.com/data/icons/iconslandgps/PNG/256x256/Places/Stadium.png
-        await $scope.initCityMap();
-        console.log(2);
+        var cityName=window.location.search.substr(1) || "Pittsburgh";
+        await $scope.initCityMap(cityName);
         var image = {
           url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
           // This marker is 20 pixels wide by 32 pixels high.
@@ -102,10 +96,11 @@
         var markers = new Array($scope.stadiums.length);
         for(i=0; i < $scope.stadiums.length; i++){
             markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name});
-            // console.log(markers[i]);
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
-             $scope.selectStadium(data)
+             var coordinates = (JSON.parse(JSON.stringify(data.latLng)));
+             
+             window.location.href = 'http://localhost:8000/#!/event/search/lat/'+ coordinates.lat.toFixed(4)+"/lng/"+coordinates.lng.toFixed(4);
             });
         }
 
