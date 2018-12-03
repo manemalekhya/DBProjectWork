@@ -7,5 +7,6 @@ angular.module('ticketApp', [
   'siteHeader',
   'eventSearch',
   'eventList',
-  'eventDetail'
+  'eventDetail',
+  'cityMap'
 ]);

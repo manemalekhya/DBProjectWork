@@ -8,7 +8,8 @@ angular.
         message: "Hello"
     },*/
     controller: ['$scope', 'City', 'Sport', /*'message',*/ function EventSearchController($scope, City, Sport/*, message*/) {
-        $scope.searchPage = message;
+        // $scope.searchPage = message;
+        $scope.searchPage = "message";
         $scope.cities = City.query();
         $scope.sports = Sport.query();
 
