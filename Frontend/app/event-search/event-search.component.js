@@ -3,39 +3,23 @@
 angular.
   module('eventSearch').
   component('eventSearch', {
-    templateUrl: 'event-search/event-search.template.html'/*,
-    resolve: {
-        message: "Hello"
-    },*/
-    controller: ['$scope', 'City', 'Sport', /*'message',*/ function EventSearchController($scope, City, Sport/*, message*/) {
-        $scope.searchPage = message;
+    templateUrl: 'event-search/event-search.template.html',
+    controller: ['$scope', 'City', 'Sport', '$rootScope', '$location', 
+    function EventSearchController($scope, City, Sport, $rootScope, $location) {
+
         $scope.cities = City.query();
         $scope.sports = Sport.query();
 
-        //search function
-        $scope.searchEvent = function() {
-        	$scope.searchText = "Yellow!";
-        	console.log("Hello");
+        $scope.searchEvent = function(searchText) {
+        	console.log(searchText);
+        	var path = '/events/search/' + encodeURI(searchText);
+        	console.log(path);
+        	$location.path(path);
     	};
-        //search city function
 
-        //search sport
-        
-
-        //querying backend
-        /*return $http({
-              method: 'GET',
-              url: API_BASE + 'campaignGroup/' + campaignGroupId + '/campaignGroupBrowserNotificationSettings'
-            })
-            .then(function(response) {
-              return response.data.data;
-            });
-
-        return $http({
-          cache: false,
-          method: 'GET',
-          url: (pathname === "/" ? ENGAGE_BASE : ENGAGE_ORIGIN + pathname + "-/v1/") + 'logged-in-users',
-          params: { bluffIE: Math.random() }
-        });*/
+    	$scope.showAllEvents = function() {
+    		// $rootScope.store.searchText = "none";
+        	$location.path('/events');
+    	};
       }]
   });
