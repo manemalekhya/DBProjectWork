@@ -30,34 +30,36 @@ public class HelloWorld extends HttpServlet
     	try 
     	{
     		Class.forName("com.mysql.jdbc.Driver");  
-    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
+    		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
     		System.out.println("Connection established!");
     		Statement stmt=con.createStatement();  
     		ResultSet rs=stmt.executeQuery("select * from customer"); 
     		JSONArray result = new JSONArray();
     		System.out.println("Success");  
-    			while (rs.next()) 
-    			{
-    				JSONObject entry = new JSONObject();
-    				int customer_id=rs.getInt("customer_id");
-    				entry.put("id", customer_id);
-    		        String first_name = rs.getString("first_name");
-    				entry.put("fname", first_name);
-    		        String last_name = rs.getString("last_name");
-    		        entry.put("lname", last_name);
-    		        String phone_number = rs.getString("phone_number");
-    		        entry.put("phone_number", phone_number);
-    		        String username = rs.getString("username");
-    		        System.out.print(customer_id + "::");
-    		        System.out.print(" " +first_name + "::");
-    		        System.out.print(" " +last_name + "::");
-    		        System.out.print(" " + phone_number + "::");
-    		        System.out.println(" " + username + "::");
-    		        result.add(entry);    		        
-    		     }
-    			response.getWriter().println(JSON.toString(result));
-    			con.close();  
-            }catch(Exception e){ System.out.println(e);}  
+			while (rs.next()) 
+			{
+				JSONObject entry = new JSONObject();
+				int customer_id=rs.getInt("customer_id");
+				entry.put("id", customer_id);
+		        String first_name = rs.getString("first_name");
+				entry.put("fname", first_name);
+		        String last_name = rs.getString("last_name");
+		        entry.put("lname", last_name);
+		        String phone_number = rs.getString("phone_number");
+		        entry.put("phone_number", phone_number);
+		        String username = rs.getString("username");
+		        System.out.print(customer_id + "::");
+		        System.out.print(" " +first_name + "::");
+		        System.out.print(" " +last_name + "::");
+		        System.out.print(" " + phone_number + "::");
+		        System.out.println(" " + username + "::");
+		        result.add(entry);    		        
+		     }
+			response.getWriter().println(JSON.toString(result));
+			con.close();  
+        }catch(Exception e){ 
+        	System.out.println(e);
+        }  
     }
   
 }

@@ -46,7 +46,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>CityMap</servlet-name>
-    <servlet-class>com.demo.prj.cityMap</servlet-class>
+    <servlet-class>com.demo.prj.CityMap</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CityMap</servlet-name>
@@ -55,7 +55,7 @@
 
   <!-->servlet>
     <servlet-name>EventList</servlet-name>
-    <servlet-class>com.demo.prj.eventList</servlet-class>
+    <servlet-class>com.demo.prj.EventList</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EventList</servlet-name>

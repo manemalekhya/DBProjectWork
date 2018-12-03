@@ -6,7 +6,6 @@ angular.
     templateUrl: 'event-search/event-search.template.html',
     controller: ['$scope', 'City', 'Sport', '$rootScope', '$location', 
     function EventSearchController($scope, City, Sport, $rootScope, $location) {
-
         $scope.cities = City.query();
         $scope.sports = Sport.query();
 
@@ -18,8 +17,7 @@ angular.
     	};
 
     	$scope.showAllEvents = function() {
-    		// $rootScope.store.searchText = "none";
-        	$location.path('/events');
+        	$location.path('/events/search/');
     	};
       }]
   });
