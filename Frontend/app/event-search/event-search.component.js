@@ -4,14 +4,15 @@ angular.
   module('eventSearch').
   component('eventSearch', {
     templateUrl: 'event-search/event-search.template.html',
-    controller: ['$scope', 'City', 'Sport', '$rootScope', '$location', 
-    function EventSearchController($scope, City, Sport, $rootScope, $location) {
+    controller: ['$scope', 'City', 'Sport', '$rootScope', '$location', '$routeParams',
+    function EventSearchController($scope, City, Sport, $rootScope, $location, $routeParams) {
         $scope.cities = City.query();
         $scope.sports = Sport.query();
+        $scope.userId = $routeParams.userId;
 
         $scope.searchEvent = function(searchText) {
         	console.log(searchText);
-        	var path = '/events/search/' + encodeURI(searchText);
+        	var path = '/' + $scope.userId + '/events/list/search/' + encodeURI(searchText);
         	console.log(path);
         	$location.path(path);
     	};

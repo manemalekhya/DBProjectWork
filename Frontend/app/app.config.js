@@ -5,19 +5,25 @@ angular.
   config(['$routeProvider',
     function config($routeProvider) {
       $routeProvider.
-        when('/', {
+        when('/:userId/', {
           template: '<event-search></event-search>'
         }).
-        when('/events/search/:search', {
+        when('/:userId/events/list/:search', {
           template: '<event-list></event-list>'
         }).
-        when('/events/map/:cityId', {
+        when('/:userId/events/list/lat/:lat/lng/:lng', {
+          template: '<event-list></event-list>'
+        }).
+        when('/:userId/events/map/:cityId', {
           template: '<city-map></city-map>'
         }).
-        when('/events/:eventId', {
+        when('/:userId/events/detail/:eventId', {
           template: '<event-detail></event-detail>'  
         }).
-        otherwise('/');
+        when('/:userId/events/detail/:eventId/success', {
+          template: '<thank-you></thank-you>'
+        }).
+        otherwise('/:userId/');
     }
   ]);
 

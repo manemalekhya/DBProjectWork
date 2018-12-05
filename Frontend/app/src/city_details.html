@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Click Events</title>
+    <title>Sport Tickets - BookMySport</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <!-- Font -->
@@ -32,7 +32,7 @@
     <div id="map"></div>
     <script>
         var app = angular.module("bookMySport", []);
-        app.controller("cityMapsController", function($scope,$http) {
+        app.controller("cityMapsController", function($scope,$http,$location) {
           $scope.initCityMap = async function(cityName){
             await $http({
               method: 'GET',
@@ -42,15 +42,18 @@
               }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
+                alert("Oops something went wrong! Please come back later!");
                 console.log(response);
               });  
           };
-          
-          // $scope.stadiums=[
-          // {coordinates:{lat: 40.4396, lng: -79.9893}, name :"PPG Paints Arena"},
-          // {coordinates:{lat: 40.4468, lng: -80.0158}, name :"Heinz Field"},
-          // {coordinates:{lat: 40.4469, lng: -80.0057}, name :"PNC Arena"}
-          // ];
+
+          $scope.goToPage = function(lat,lng){
+            console.log(lat);
+            console.log(lng);
+            var path = 'http://localhost:8000/#!/events/lat/'+ parseFloat(lat)*10000+"/lng/"+parseFloat(lng)*10000;
+            console.log(path);
+            $location.path(path);
+          };
 
         });
 
@@ -98,9 +101,9 @@
             markers[i]=new google.maps.Marker({position:$scope.stadiums[i].coordinates, map:map, title:$scope.stadiums[i].name});
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
-             var coordinates = (JSON.parse(JSON.stringify(data.latLng)));
-             
-             window.location.href = 'http://localhost:8000/#!/event/search/lat/'+ coordinates.lat.toFixed(4)+"/lng/"+coordinates.lng.toFixed(4);
+              var coordinates = (JSON.parse(JSON.stringify(data.latLng)));
+              //$scope.goToPage(coordinates.lat.toFixed(4),coordinates.lng.toFixed(4));
+              window.location.href = 'http://localhost:8000/#!/events/lat/'+ parseFloat(coordinates.lat.toFixed(4))+"/lng/"+parseFloat(coordinates.lng.toFixed(4));
             });
         }
 
