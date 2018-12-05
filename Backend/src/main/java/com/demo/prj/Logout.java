@@ -1,4 +1,4 @@
-package com.demo.prj;
+/*package com.demo.prj;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -21,4 +21,4 @@ RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Login.jsp")
 requestDispatcher.forward(request, response);
 System.out.println("Logged out");
 }
-}
+}*/

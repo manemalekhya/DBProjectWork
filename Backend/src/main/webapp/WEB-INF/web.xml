@@ -53,13 +53,13 @@
     <url-pattern>/cityMap/*</url-pattern>
   </servlet-mapping>
 
-  <!-->servlet>
+  <servlet>
     <servlet-name>EventList</servlet-name>
     <servlet-class>com.demo.prj.EventList</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EventList</servlet-name>
     <url-pattern>/eventList/*</url-pattern>
-  </servlet-mapping-->
+  </servlet-mapping>
 
 </web-app>
