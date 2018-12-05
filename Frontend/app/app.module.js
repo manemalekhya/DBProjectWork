@@ -8,5 +8,6 @@ angular.module('ticketApp', [
   'eventSearch',
   'eventList',
   'eventDetail',
+  'editList',
   'thankYou'
 ]);

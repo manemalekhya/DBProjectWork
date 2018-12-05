@@ -8,16 +8,17 @@ angular.
     	
         $scope.buildQuery = function(){
         	var result;
-        	if(!$routeParams.search)
+        	if(!($routeParams.search || $scope.searchText || $scope.filter || $scope.filter.city || $scope.filter.stadium || $scope.filter.sport))
 		    	result =  "";
 		    else
-		    	result = $routeParams.search;
+		    	result = ($scope.searchText || $routeParams.search ) || "";
 		    return  "q="+result+"&c="+$scope.filter.city+"&s="+$scope.filter.stadium+"&sp="+$scope.filter.sport;
 		};
 
 		$scope.getData = async function(){
 		    var query = await $scope.buildQuery();
-		    console.log(query);
+            $scope.searchText=$scope.searchText || $routeParams.search;
+		    // console.log(query);
 		    await $http({
             	method: 'GET',
             	url: 'http://localhost:8080/eventList?'+ query

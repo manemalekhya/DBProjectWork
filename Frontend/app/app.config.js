@@ -8,8 +8,14 @@ angular.
         when('/:userId/', {
           template: '<event-search></event-search>'
         }).
-        when('/:userId/events', {
-          template: '<admin-page></admin-page>'
+        when('/a/editevents', {
+          template: '<edit-events></edit-events>'
+        }).
+        when('/a/editlist', {
+          template: '<edit-list></edit-list>'
+        }).
+        when('/:userId/events/list/', {
+          template: '<event-list></event-list>'
         }).
         when('/:userId/events/list/:search', {
           template: '<event-list></event-list>'

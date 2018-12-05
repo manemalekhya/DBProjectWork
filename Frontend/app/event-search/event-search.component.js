@@ -12,13 +12,15 @@ angular.
 
         $scope.searchEvent = function(searchText) {
         	console.log(searchText);
-        	var path = '/' + $scope.userId + '/events/list/search/' + encodeURI(searchText);
+        	var path = '/' + $scope.userId + '/events/list/' + encodeURI(searchText);
         	console.log(path);
         	$location.path(path);
     	};
 
     	$scope.showAllEvents = function() {
-        	$location.path('/events/search/');
+          var allpath = '/' + $scope.userId +'/events/list/';
+          console.log(allpath);
+        	$location.path(allpath);
     	};
       }]
   });
