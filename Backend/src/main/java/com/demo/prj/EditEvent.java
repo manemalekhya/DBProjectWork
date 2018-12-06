@@ -2,6 +2,8 @@ package com.demo.prj;
 import java.sql.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,19 +33,29 @@ public class EditEvent extends HttpServlet
     		int eventId = Integer.parseInt(request.getParameter("eid"));
             String eventname = request.getParameter("name");
             int locid = Integer.parseInt(request.getParameter("locid"));
-            // Date edate = new Date(request.getParameter("edate"));
+            Date edate = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("edate"));
             int t1id = Integer.parseInt(request.getParameter("t1id"));
             int t2id = Integer.parseInt(request.getParameter("t2id"));
             String status = request.getParameter("status");
             int result = (request.getParameter("result")!=null)?Integer.parseInt(request.getParameter("result")):-1;
             //JSONArray result = new JSONArray();
-            System.out.println(result);
+            System.out.println(edate);
             JSONObject json = new JSONObject();
-        
-            String sql1="SELECT e.event_status as status, e.event_location as locid, e.team2_id as t2id, e.team1_id as t1id, e.event_date as edate, e.name as ename,t1.team_name as t1Name,t2.team_name as t2Name from event_list as e, team_details as t1, team_details as t2, field_details as s WHERE event_id ="+eventId+ " AND e.team1_id=t1.team_id AND e.team2_id=t2.team_id AND e.event_location = s.field_id";           
+            String sql1="";
+            if(eventId == 0){
+                sql1+="INSERT INTO event_date (name,event_date,event_location,team1_id"+
+                ",team2_id,event_status) values ("+eventname+","+edate+","+locid+","+t1id+","+t2id
+                +","+status+");";
+            }else{
+                sql1+="UPDATE event_date SET name = \'"+eventname+"\', event_date = \'"+edate+"\', event_location = "
+                +locid+", team1_id = "+t1id+", team2_id = "+t2id+
+                ", event_status = \'"+status+"\' WHERE event_id="+eventId+";";
+            }
+                   
             
             Statement stmt=con.createStatement();
-            java.sql.ResultSet rs = stmt.executeQuery(sql1);
+            // java.sql.ResultSet rs = stmt.executeQuery(sql1);
+            System.out.println("=====================");
     	    System.out.println(sql1);
             JSONObject event = new JSONObject();
 
@@ -53,3 +65,16 @@ public class EditEvent extends HttpServlet
         }catch(Exception e){ System.out.println(e);}  
    }
 }
+/*
+No of games per stadium
+select COUNT(*) as noOfGames,s.field_name as name, s.field_id as id from event_list as e, field_details as s WHERE e.event_location=s.field_id GROUP BY e.event_location;
+
+No of tickets per city
+select COUNT(*) as noOfTickets,s.City as city from event_list as e, field_details as s, ticket as t WHERE e.event_location=s.field_id AND t.event_id=e.event_id GROUP BY s.City,YEAR(e.event_date) ORDER BY noOfTickets DESC;
+
+Most Buying customer
+select count(*) as noOfTickets from ticket as t, customer as c WHERE c.customer_id=t.customer_id GROUP BY t.customer_id ORDER BY noOfTickets DESC LIMIT 10;
+
+revenue per city per year
+select sum(t.amount) as revenue, s.City as city from transactions as t, ticket as ti, field_details as s, event as e WHERE t.transaction_id = ti.transaction_id AND e.event_location=s.field_id AND ti.event_id=e.vent_id GROUP BY s.City,YEAR(t.date) ORDER BY revenue DESC LIMIT 10;
+*/
