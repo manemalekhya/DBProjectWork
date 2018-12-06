@@ -81,4 +81,13 @@
     <servlet-name>Checkout</servlet-name>
     <url-pattern>/checkout/*</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Aggregate</servlet-name>
+    <servlet-class>com.demo.prj.Aggregates</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Aggregate</servlet-name>
+    <url-pattern>/aggregate/*</url-pattern>
+  </servlet-mapping>
 </web-app>
