@@ -102,8 +102,7 @@
             var stadiumName=$scope.stadiums[i].name;
             markers[i].addListener('click', function(data) {
               var coordinates = (JSON.parse(JSON.stringify(data.latLng)));
-              //$scope.goToPage(coordinates.lat.toFixed(4),coordinates.lng.toFixed(4));
-              window.location.href = 'http://localhost:8000/#!/events/lat/'+ parseFloat(coordinates.lat.toFixed(4))+"/lng/"+parseFloat(coordinates.lng.toFixed(4));
+              window.location.href = 'http://localhost:8000/#!/1/events/list/lat/'+ parseFloat(coordinates.lat.toFixed(4))+"/lng/"+parseFloat(coordinates.lng.toFixed(4));
             });
         }
 

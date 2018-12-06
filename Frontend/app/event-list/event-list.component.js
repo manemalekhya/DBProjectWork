@@ -8,6 +8,7 @@ angular.
     	
         $scope.buildQuery = function(){
         	var result;
+            console.log($routeParams.lat);
         	if(!($routeParams.search || $scope.searchText || $scope.filter || $scope.filter.city || $scope.filter.stadium || $scope.filter.sport))
 		    	result =  "";
 		    else
