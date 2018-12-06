@@ -11,6 +11,9 @@ angular.
         when('/a/editevents/:eventId', {
           template: '<edit-events></edit-events>'
         }).
+        when('/a/editevents/', {
+          template: '<edit-events></edit-events>'
+        }).
         when('/a/editlist', {
           template: '<edit-list></edit-list>'
         }).

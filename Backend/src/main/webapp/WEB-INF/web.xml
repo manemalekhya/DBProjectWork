@@ -64,4 +64,13 @@
     <url-pattern>/eventList/*</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>EditEvent</servlet-name>
+    <servlet-class>com.demo.prj.EditEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditEvent</servlet-name>
+    <url-pattern>/editEvent/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>
