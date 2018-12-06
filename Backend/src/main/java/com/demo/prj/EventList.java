@@ -54,6 +54,9 @@ public class EventList extends HttpServlet
                 eventSQLQuery+=" AND t1.sport_played LIKE \'%"+request.getParameter("sp")+"%\'";
                 eventSQLQuery+=" AND t2.sport_played LIKE \'%"+request.getParameter("sp")+"%\'";
             }
+            if(request.getParameter("user")!=null){
+                System.out.println("ADMIN");
+            }
             System.out.println(eventSQLQuery);
             Statement stmt=con.createStatement();
             java.sql.ResultSet rs = stmt.executeQuery(eventSQLQuery);

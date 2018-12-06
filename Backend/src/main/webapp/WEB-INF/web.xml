@@ -28,7 +28,8 @@
     <servlet-name>Signup</servlet-name>
     <url-pattern>/signup/*</url-pattern>
   </servlet-mapping>
-      <servlet>
+  
+  <servlet>
     <servlet-name>EventDet</servlet-name>
     <servlet-class>com.demo.prj.EventDetails</servlet-class>
   </servlet>
@@ -36,6 +37,7 @@
     <servlet-name>EventDet</servlet-name>
     <url-pattern>/eventdetail/*</url-pattern>
   </servlet-mapping>
+   
    <servlet>
     <servlet-name>Analytics</servlet-name>
     <servlet-class>com.demo.prj.Analytics</servlet-class>

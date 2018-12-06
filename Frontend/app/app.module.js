@@ -9,5 +9,6 @@ angular.module('ticketApp', [
   'eventList',
   'eventDetail',
   'editList',
+  'editEvents',
   'thankYou'
 ]);
