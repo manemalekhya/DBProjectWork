@@ -25,14 +25,14 @@ public class EventList extends HttpServlet
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","root");   
             System.out.println("DB connection successful");
             
             String eventSQLQuery="SELECT e.event_id as id, e.name as name, t1.team_name as team1, t2.team_name as team2, s.field_name as stadiumname, e.event_date as event_time from event_list as e, field_details as s, team_details as t1, team_details as t2  WHERE e.event_location = s.field_id AND (e.team1_id = t1.team_id AND e.team2_id = t2.team_id)";
             
             if(request.getParameter("q")!=null){
                 String q=request.getParameter("q");
-                eventSQLQuery+="AND (e.name LIKE \'%"+q+"%\' OR s.field_name LIKE \'%"+q+"%\' OR s.field_location LIKE \'%"+q+"%\' OR s.City LIKE \'%"+q+"%\' )";
+                eventSQLQuery+="AND (e.name LIKE \'%"+q+"%\' OR s.field_name LIKE \'%"+q+"%\' OR s.field_location LIKE \'%"+q+"%\' OR s.City LIKE \'%"+q+"%\' OR ( t1.sport_played LIKE \'%"+q+"%\' AND t2.sport_played LIKE \'%"+q+"%\'))";
             }
 
             if(request.getParameter("c")!=null){
