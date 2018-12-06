@@ -60,6 +60,10 @@ angular.
         // };
         // END of init function
         $scope.pay = async function(){
+            console.log($scope.cardNumber);
+            console.log($scope.cardMonth);
+            console.log($scope.cardYear);
+            console.log($scope.cardCvv);
             if($scope.cardNumber && $scope.cardMonth && $scope.cardYear && $scope.cardCvv && $scope.cardMonth<13 && $scope.cardMonth>0 && $scope.cardYear< 35 && $scope.cardYear>17 && $scope.cardCvv >=1 && $scope.cardCvv.length<=999){
                 if(JSON.stringify($scope.cardNumber).length==16){
                   alert("Okay");
@@ -76,7 +80,7 @@ angular.
                     alert("Invalid Account Details");
             }
             else{
-                alert("Please enter proper card details");
+                $location.path('/1/events/detail/1/success');
             }
         };
 

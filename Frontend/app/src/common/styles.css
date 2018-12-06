@@ -165,7 +165,7 @@ header {
         top: 0;
         left: 0;
         right: 0;
-        text-align: center;
+        text-align: right;
         z-index: 1000;
         padding: 25px 0;
         font-weight: 600;
@@ -213,8 +213,9 @@ header .logo {
 }
 
 header .logo img {
-        height: 100%;
-        width: auto;
+        margin: -71px;
+        height: 250px;
+        width: 250px;
 }
 
 header ul.main-menu > li > a {

@@ -24,7 +24,7 @@ public class LoginDetails extends HttpServlet
     	try 
     	{
     		Class.forName("com.mysql.jdbc.Driver");
-    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","root");   
+    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
     		// System.out.println("DB connection successful");
     		// out.println("Welcome to the login page");
     		String username = request.getParameter("u");

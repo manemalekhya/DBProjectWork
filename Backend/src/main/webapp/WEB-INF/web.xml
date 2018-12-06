@@ -72,5 +72,13 @@
     <servlet-name>EditEvent</servlet-name>
     <url-pattern>/editEvent/*</url-pattern>
   </servlet-mapping>
-
+  
+  <servlet>
+    <servlet-name>Checkout</servlet-name>
+    <servlet-class>com.demo.prj.Checkout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Checkout</servlet-name>
+    <url-pattern>/checkout/*</url-pattern>
+  </servlet-mapping>
 </web-app>

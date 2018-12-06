@@ -22,7 +22,7 @@
                     <div class="row">
                         <label class="col-sm-12" style="text-align: center; background-color: #535c68; color: #ffffff"> Filters </label>
                         <p class="col-sm-12">Date :</p>
-                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" class="col-sm-12">
+                        <input type="date" id="start" name="trip-start" value="{{today}}" min="{{today}}" max="2018-12-31" ng-model="filter.date" placeholder="yyyy-MM-dd" class="col-sm-12">
                         <br class="col-sm-12">
                         <p class="col-sm-12">City : </p>
                         <label class="col-sm-12"><input type="radio" name="radcity" value="pittsburgh"  ng-model="filter.city">Pittsburgh</label>

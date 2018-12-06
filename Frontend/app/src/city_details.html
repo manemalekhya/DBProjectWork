@@ -50,7 +50,7 @@
           $scope.goToPage = function(lat,lng){
             console.log(lat);
             console.log(lng);
-            var path = 'http://localhost:8000/#!/events/lat/'+ parseFloat(lat)*10000+"/lng/"+parseFloat(lng)*10000;
+            var path = 'http://localhost:8000/#!/n/events/list/lat/'+ parseFloat(lat)*10000+"/lng/"+parseFloat(lng)*10000;
             console.log(path);
             $location.path(path);
           };

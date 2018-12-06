@@ -23,7 +23,7 @@ public class CreateEvent extends HttpServlet
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","root");   
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
             System.out.println("DB connection successful");
             
             String eventSQLQuery="INSERT INTO transaction (amount,card_no,customer_id) values("+100+","+request.getParameter("card")+","+request.getParameter("cust")+")";

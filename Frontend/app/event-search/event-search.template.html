@@ -37,7 +37,7 @@
                                 <div class="col-sm-2" ng-repeat="sport in sports">
                                         <div class="card">
                                                 <!--a href="#!/events/map/{{city.id}}"-->
-                                                <a ng-click=searchEvent(sport.id) style="cursor:pointer;">
+                                                <a ng-click=searchEvent(sport.name) style="cursor:pointer;">
                                                         <img style="height: 100px;" class="card-img-top" src="{{sport.imageUrl}}"" alt="Card image cap">
                                                         <h5 class="card-title">{{sport.name}}</h5>
                                                 </a>
