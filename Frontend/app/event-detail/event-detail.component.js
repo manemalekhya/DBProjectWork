@@ -10,6 +10,7 @@ angular.
         $scope.initEventDetails = function(){
           $scope.getData();
           $scope.isValidCheckout = false;
+          $scope.card = {};
 	        /*$scope.event = {
 		        id: 1,
             seatid: 1,
@@ -59,16 +60,20 @@ angular.
         // END of init function
 
         $scope.pay = async function(){
-            if($scope.cardNumber && $scope.cardMonth && $scope.cardYear && $scope.cardCvv && $scope.cardMonth<13 && $scope.cardMonth>0 && $scope.cardYear< 35 && $scope.cardYear>17 && $scope.cardCvv >=1 && $scope.cardCvv.length<=999){
-                if(JSON.stringify($scope.cardNumber).length==16){
+            if($scope.card && $scope.card.cardNumber && $scope.card.cardMonth && 
+              $scope.card.cardYear && $scope.card.cardCvv && $scope.card.cardMonth<13 
+              && $scope.card.cardMonth>0 && $scope.card.cardYear< 35 && 
+              $scope.card.cardYear>17 && $scope.card.cardCvv >=1 && 
+              $scope.card.cardCvv.length<=999){
+                if(JSON.stringify($scope.card.cardNumber).length==16){
                   alert("Okay");
                   //http
                   $location.path('/home');
                 }
                 else
                   alert("Invalid card number");
-            }else if($scope.cardNumber){
-                if(JSON.stringify($scope.cardNumber).length==10){
+            }else if($scope.card && $scope.card.cardNumber){
+                if(JSON.stringify($scope.card.cardNumber).length==10){
                     alert("Okay");
                     $location.path();
                 }
