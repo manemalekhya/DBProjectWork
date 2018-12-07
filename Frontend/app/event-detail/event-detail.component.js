@@ -7,7 +7,6 @@ angular.
     controller: ['$scope', '$routeParams', '$http', '$location', function EventDetailController($scope, $routeParams, $http, $location) {
         $scope.userId = $routeParams.userId;
         $scope.eventId = $routeParams.eventId;
-
         $scope.initEventDetails = function(){
           $scope.getData();
           $scope.isValidCheckout = false;
@@ -29,9 +28,6 @@ angular.
               "type" : "VIP", 
               "value" : "vip"
             }];
-
-	        
-          
         };
   	    // END of init function
   
@@ -40,6 +36,7 @@ angular.
             && 
             ($scope.ticket.noOfAdults > 0 || $scope.ticket.noOfChildren > 0)){
             $scope.isValidCheckout = true;
+            $scope.ticket.typeOfSeat=JSON.parse($scope.ticket.typeOfSeat);
           }
           else{
             alert("Please enter proper parameters");
@@ -62,10 +59,6 @@ angular.
         // END of init function
 
         $scope.pay = async function(){
-            console.log($scope.cardNumber);
-            console.log($scope.cardMonth);
-            console.log($scope.cardYear);
-            console.log($scope.cardCvv);
             if($scope.cardNumber && $scope.cardMonth && $scope.cardYear && $scope.cardCvv && $scope.cardMonth<13 && $scope.cardMonth>0 && $scope.cardYear< 35 && $scope.cardYear>17 && $scope.cardCvv >=1 && $scope.cardCvv.length<=999){
                 if(JSON.stringify($scope.cardNumber).length==16){
                   alert("Okay");
@@ -91,9 +84,9 @@ angular.
           return $routeParams.eventId;
         }
 
-        $scope.getData = async function(eventId){
-          console.log("getData");
-          console.log(eventId);
+        // $scope.getData = async function(eventId){
+        //   console.log("getData");
+        //   console.log(eventId);
           /*var query = await $scope.buildQuery();
           $scope.searchText=$scope.searchText || $routeParams.search;
           console.log(query);
@@ -109,7 +102,7 @@ angular.
                 alert('Oops something went wrong! Please try in sometime!');
 
           });*/
-        };
+        // };
 
         $scope.getData = async function(){
           var eventId = await $scope.getEventId();

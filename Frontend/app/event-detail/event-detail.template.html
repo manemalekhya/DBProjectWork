@@ -102,7 +102,7 @@
             </tr>
             <tr style="border: 1;">
                 <th style="border-top: 1px solid black;">Total : &nbsp;</th>
-                <td style="border-top: 1px solid black;">{{ticket.noOfChildren * ticket.child}}</td>
+                <td style="border-top: 1px solid black;">{{(ticket.noOfChildren * ticket.typeOfSeat.child)+(ticket.noOfAdults * ticket.typeOfSeat.adult)}}</td>
             </tr>
         </table>
     </div>
@@ -110,24 +110,24 @@
     <div class="row">
         <div class="col-sm-5" style="margin: 10px 10px;">
             <label style="font-size: 18px">Card No. / Account No.</label>
-            <input class ="form-control" ng-model="cardNumber" type="number" name="">
+            <input class ="form-control" ng-model="cardNumber" type="number">
         </div>
     </div>
     <div class="row">
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">Expiry Month</label>
-            <input class ="form-control" ng-model="cardMonth" type="number" name="" min="1" max="12">
+            <input class ="form-control" ng-model="cardMonth" type="number" min="1" max="12">
         </div>
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">Expiry Year</label>
-            <input class ="form-control" ng-model="cardYear" type="number" name=""  min="18" max="35">
+            <input class ="form-control" ng-model="cardYear" type="number"  min="18" max="35">
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">CVV</label>
-            <input class ="form-control" ng-model="cardCvv" type="password" name="">
+            <input class ="form-control" ng-model="cardCvv" type="password">
         </div>
     </div>
 
