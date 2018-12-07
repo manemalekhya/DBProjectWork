@@ -4,15 +4,14 @@ angular.
   module('eventDetail').
   component('eventDetail', {
     templateUrl: 'event-detail/event-detail.template.html',
-    controller: ['$scope', 'User', function EventDetailController($scope, User) {
-        //$scope.detailPage = 'Detail';
-        //$scope.eventName = 'Superbowl: 2018';
-        $scope.userId = User.getId();
-        $scope.isValidCheckout = false;
+    controller: ['$scope', '$routeParams', '$http', '$location', function EventDetailController($scope, $routeParams, $http, $location) {
+        $scope.userId = $routeParams.userId;
+        $scope.eventId = $routeParams.eventId;
 
         $scope.initEventDetails = function(){
+          $scope.getData();
           $scope.isValidCheckout = false;
-	        $scope.event = {
+	        /*$scope.event = {
 		        id: 1,
             seatid: 1,
 		        name: "Wrestlemania",
@@ -20,7 +19,7 @@ angular.
 		        team2:{id:2,name:'Kane'},
 		        stadium:{name:'PPG Paints Arena',latitude:1.1,longitude:1.2,location:'123 Street',city:'Pittsburgh',state:'PA',zip:"15206"},
 		        event_date:Date.now()
-	        };
+	        };*/
 	        $scope.seatTypeArr = [
             { 
               "type" : "Regular",
@@ -30,14 +29,16 @@ angular.
               "type" : "VIP", 
               "value" : "vip"
             }];
-	        $scope.ticket={
-	          event:$scope.event.id
-	        };
+
+	        
+          
         };
   	    // END of init function
   
         $scope.checkout = function(){
-          if($scope.ticket && $scope.ticket.event && $scope.ticket.typeOfSeat && (($scope.ticket.noOfAdults>=0 && $scope.ticket.noOfChildren>=0)|| (!$scope.ticket.noOfAdults || !$scope.ticket.noOfChildren)) && ($scope.ticket.noOfAdults>0 || $scope.ticket.noOfChildren>0)){
+          if($scope.ticket.typeOfSeat != undefined 
+            && 
+            ($scope.ticket.noOfAdults > 0 || $scope.ticket.noOfChildren > 0)){
             $scope.isValidCheckout = true;
           }
           else{
@@ -59,6 +60,7 @@ angular.
         //   // $scope.cardNumber="";
         // };
         // END of init function
+
         $scope.pay = async function(){
             console.log($scope.cardNumber);
             console.log($scope.cardMonth);
@@ -67,6 +69,7 @@ angular.
             if($scope.cardNumber && $scope.cardMonth && $scope.cardYear && $scope.cardCvv && $scope.cardMonth<13 && $scope.cardMonth>0 && $scope.cardYear< 35 && $scope.cardYear>17 && $scope.cardCvv >=1 && $scope.cardCvv.length<=999){
                 if(JSON.stringify($scope.cardNumber).length==16){
                   alert("Okay");
+                  //http
                   $location.path('/home');
                 }
                 else
@@ -80,9 +83,55 @@ angular.
                     alert("Invalid Account Details");
             }
             else{
-                $location.path('/1/events/detail/1/success');
+                alert("Errors!");
             }
         };
+
+        $scope.getEventId = function(){
+          return $routeParams.eventId;
+        }
+
+        $scope.getData = async function(eventId){
+          console.log("getData");
+          console.log(eventId);
+          /*var query = await $scope.buildQuery();
+          $scope.searchText=$scope.searchText || $routeParams.search;
+          console.log(query);
+          await $http({
+            method: 'GET',
+            url: 'http://localhost:8080/eventList?'+ query
+          }).then(function successCallback(response) {
+                $scope.events_list = response.data;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(response);
+                alert('Oops something went wrong! Please try in sometime!');
+
+          });*/
+        };
+
+        $scope.getData = async function(){
+          var eventId = await $scope.getEventId();
+          
+          await $http({
+                method: 'GET',
+                url: 'http://localhost:8080/eventdetail?eid='+ eventId
+              }).then(function successCallback(response) {
+                    $scope.event = response.data;
+                    //console.log(response.data);
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log(response);
+                    alert('Oops something went wrong! Please try in sometime!');
+
+              });
+          };
+
+          $scope.print = function(){
+            console.log($scope.ticket.typeOfSeat);
+          };
 
 
     }]

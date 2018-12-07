@@ -23,5 +23,5 @@ angular.
           console.log(allpath);
         	$location.path(allpath);
         };
-    }]
+      }]
   });

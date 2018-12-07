@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.util.ajax.JSON;
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 @SuppressWarnings("serial")
 public class EventDetails extends HttpServlet
 {
@@ -28,41 +28,47 @@ public class EventDetails extends HttpServlet
     		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/book_my_game","root","mysql");   
     		String eventId = request.getParameter("eid");
             
-            //JSONArray result = new JSONArray();
             JSONObject json = new JSONObject();            
             String sql1="SELECT e.event_status as status, e.event_location as locid, e.team2_id as t2id, e.team1_id as t1id, e.event_date as edate, e.name as ename,t1.team_name as t1Name,t2.team_name as t2Name from event_list as e, team_details as t1, team_details as t2, field_details as s WHERE event_id ="+eventId+ " AND e.team1_id=t1.team_id AND e.team2_id=t2.team_id AND e.event_location = s.field_id";           
             
+            String sql = "SELECT e.event_status as status, e.event_location as locid, e.team2_id as t2id, e.team1_id as t1id, e.event_date as edate, e.name as ename, t1.team_name as t1Name, t2.team_name as t2Name, c.seat_category as type, c.adult_price as adult, c.child_price as child, s.field_name, s.field_name as sname, s.field_location as saddr, s.city as scity, s.state as sstate\n" + 
+            		"FROM event_list as e, team_details as t1, team_details as t2, field_details as s, seat_details as c \n" + 
+            		"WHERE event_id ="+eventId+ " AND e.team1_id=t1.team_id AND e.team2_id=t2.team_id AND e.event_location = s.field_id \n" + 
+            		"AND c.field_id = e.event_location;";
+            
             Statement stmt=con.createStatement();
-            java.sql.ResultSet rs = stmt.executeQuery(sql1);
-    	    System.out.println(sql1);
+            java.sql.ResultSet rs = stmt.executeQuery(sql);
+    	    System.out.println(sql);
             JSONObject event = new JSONObject();
-   //  		// out.println(username);
-   //  		// out.println(password); 
-    		if(rs.next())
-			{   			
-                // System.out.println("Success");
-                
-                event.put("ename",rs.getString("ename"));
+            boolean isFirst = true;
+            	
+    		while(rs.next())
+			{  
+    			if(isFirst) {
+    				JSONArray seats = new JSONArray();
+    				event.put("seats",seats);
+    				isFirst = false;
+    			}
+                event.put("name",rs.getString("ename"));
                 event.put("t1Name",rs.getString("t1Name"));
                 event.put("t2Name",rs.getString("t2Name"));
-                // edate
-                event.put("edate",rs.getDate("edate"));
+                event.put("date",rs.getDate("edate"));
                 event.put("t1id",rs.getInt("t1id"));
-                
                 event.put("t2id",rs.getInt("t2id"));
-
-                event.put("locid",rs.getInt("locid"));
+                event.put("sid",rs.getInt("locid"));
                 event.put("status",rs.getString("status"));
-                
-                // stadium.put("coordinates",coordinates);
-                // System.out.println(event);
-    			
-			} 
-    		else 
-    		{
-                // System.out.println("Failure");
-
-		    }
+                event.put("sname",rs.getString("sname"));
+                event.put("saddr",rs.getString("saddr"));
+                event.put("scity",rs.getString("scity"));
+                event.put("sstate",rs.getString("sstate"));
+                JSONObject seat = new JSONObject();
+                seat.put("type", rs.getString("type"));
+                seat.put("adult", rs.getString("adult"));
+                seat.put("child", rs.getString("child"));
+                JSONArray arr = (JSONArray)event.get("seats");
+                arr.add(seat);
+                event.put("seats",arr);
+			}
             System.out.println(event);
 			response.getWriter().println(JSON.toString(event));
 			con.close();  
