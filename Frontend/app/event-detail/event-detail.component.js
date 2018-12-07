@@ -74,8 +74,26 @@ angular.
                   alert("Invalid card number");
             }else if($scope.card && $scope.card.cardNumber){
                 if(JSON.stringify($scope.card.cardNumber).length==10){
-                    alert("Okay");
+                    // alert("Okay");
+                    console.log($scope.event);
                     $location.path();
+                    await $http({
+                      method: 'GET',
+                      url: 'http://localhost:8080/checkout/?eid='+$scope.eventId+"&cid="+$scope.userId
+                      +"&sid="+$scope.event.sid+"&adult="+$scope.ticket.noOfAdults
+                      +"&child="+$scope.ticket.noOfChildren +
+                      "&child="+$scope.ticket.noOfChildren +
+                      "&type="+$scope.ticket.typeOfSeat.type+"&card="+$scope.card.cardNumber,
+                      }).then(function successCallback(response) {
+                            alert('Success');
+                            $location.path('/home');
+                        }, function errorCallback(response) {
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                            console.log(response);
+                            alert('Oops something went wrong! Please try in sometime!');
+
+                      });
                 }
                 else
                     alert("Invalid Account Details");
