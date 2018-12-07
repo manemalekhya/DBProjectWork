@@ -50,7 +50,7 @@
                         <p >No of Adults : </p>    
                     </div>
                     <div class="col-sm-2">
-                        <input type="number" ng-model="ticket.noOfAdults" name="noOfAdults">
+                        <input type="number" ng-model="ticket.noOfAdults" ng-init="ticket.noOfAdults=0" name="noOfAdults">
                     </div>
                 </div>
                 
@@ -59,7 +59,7 @@
                         <p >No of Children : </p>    
                     </div>
                     <div class="col-sm-2">
-                        <input type="number" ng-model="ticket.noOfChildren" name="noOfChildren">
+                        <input type="number" ng-model="ticket.noOfChildren" ng-init="ticket.noOfChildren=0" name="noOfChildren">
                     </div>
                 </div>
 
@@ -110,24 +110,24 @@
     <div class="row">
         <div class="col-sm-5" style="margin: 10px 10px;">
             <label style="font-size: 18px">Card No. / Account No.</label>
-            <input class ="form-control" ng-model="cardNumber" type="number">
+            <input class ="form-control" ng-model="cardNumber" type="text" name="">
         </div>
     </div>
     <div class="row">
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">Expiry Month</label>
-            <input class ="form-control" ng-model="cardMonth" type="number" min="1" max="12">
+            <input class ="form-control" ng-model="cardMonth" type="number" name="" min="1" max="12">
         </div>
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">Expiry Year</label>
-            <input class ="form-control" ng-model="cardYear" type="number"  min="18" max="35">
+            <input class ="form-control" ng-model="cardYear" type="number" name=""  min="18" max="35">
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-1" style="margin: 10px 10px;">
             <label style="font-size: 18px">CVV</label>
-            <input class ="form-control" ng-model="cardCvv" type="password">
+            <input class ="form-control" ng-model="cardCvv" type="password" name="">
         </div>
     </div>
 
